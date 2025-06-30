@@ -4,18 +4,18 @@ class Solution {
     }
     public static void getSubset(int index, int[] nums, List<Integer> ds, List<List<Integer>> ans)
     {
-        if(index==nums.length)
+        ans.add(new ArrayList<Integer>(ds));
+    
+        for(int i = index; i<nums.length; i++)
         {
-            if(!ans.contains(ds))
+            if(i>index && nums[i]==nums[i-1])
             {
-                ans.add(new ArrayList<Integer>(ds));
+                continue;
             }
-            return;
+            ds.add(nums[i]);
+            getSubset(i+1, nums, ds, ans);
+            ds.remove(ds.size()-1);
         }
-        ds.add(nums[index]);
-        getSubset(index+1, nums, ds, ans);
-        ds.remove(ds.size()-1);
-        getSubset(index+1, nums, ds, ans);
 
     }
     public static List<List<Integer>> result(int[] nums)
