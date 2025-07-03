@@ -1,13 +1,6 @@
 class Solution {
     public void solveSudoku(char[][] board) {
         solve(board);
-
-        for (char[] row : board) {
-            for (char ch : row) {
-                System.out.print(ch + " ");
-            }
-            System.out.println();
-        }
     }
 
     public static boolean solve(char[][] board) {
