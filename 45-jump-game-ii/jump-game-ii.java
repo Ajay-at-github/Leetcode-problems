@@ -10,6 +10,7 @@ class Solution {
             {
                 jumps++;
                 end = farthest;
+                if(end >= nums.length-1) break;
             }
         }
         return jumps;
