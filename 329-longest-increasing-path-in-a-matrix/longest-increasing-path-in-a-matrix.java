@@ -3,11 +3,6 @@ class Solution {
         int m = matrix.length;
         int n = matrix[0].length;
         int[][] dp = new int[m][n];
-        
-        for(int i=0; i<m; i++)
-        {
-            Arrays.fill(dp[i], -1);
-        }
 
         for(int i=0; i<m; i++)
         {
@@ -34,7 +29,7 @@ class Solution {
         {
             return 0;
         }
-        if(dp[r][c] != -1) return dp[r][c];
+        if(dp[r][c] != 0) return dp[r][c];
 
         int res = 0;
         res = Math.max(res, 1 + dfs(r-1, c, matrix[r][c], matrix, dp));
