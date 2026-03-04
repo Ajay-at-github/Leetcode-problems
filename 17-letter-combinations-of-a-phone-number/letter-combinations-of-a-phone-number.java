@@ -1,33 +1,31 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        HashMap<String, String> table = new HashMap<>();
-        table.put("2","abc");
-        table.put("3","def");
-        table.put("4","ghi");
-        table.put("5","jkl");
-        table.put("6","mno");
-        table.put("7","pqrs");
-        table.put("8","tuv");
-        table.put("9","wxyz");
+        HashMap<String, String> DigitToChar = new HashMap<>();
+        DigitToChar.put("2", "abc");
+        DigitToChar.put("3", "def");
+        DigitToChar.put("4", "ghi");
+        DigitToChar.put("5", "jkl");
+        DigitToChar.put("6", "mno");
+        DigitToChar.put("7", "pqrs");
+        DigitToChar.put("8", "tuv");
+        DigitToChar.put("9", "wxyz");
 
-        List<String> ans = new ArrayList<>();
-        if(digits.length()>0)
-        {
-            helper(0, "", ans, digits, table);
-        }
-        return ans;
+        List<String> res = new ArrayList<>();
+        String CurrChar = new String();
+        int i=0;
+        backtrack(0, digits, DigitToChar, CurrChar, res);
+        return res;
     }
-    public static void helper(int i, String str, List<String> ans, String digits, HashMap<String, String> table)
+    public void backtrack(int i, String digits, HashMap<String, String> DigitToChar, String CurrChar, List<String> res)
     {
-        if(str.length() == digits.length())
+        if(CurrChar.length() == digits.length())
         {
-            ans.add(str);
+            res.add(CurrChar);
             return;
         }
-        String key = String.valueOf(digits.charAt(i));
-        // System.out.println(key);
-        for (char c : table.get(key).toCharArray()) {
-            helper(i + 1, str + c, ans, digits, table);
+        for (char c : DigitToChar.get(String.valueOf(digits.charAt(i))).toCharArray())
+        {
+            backtrack(i+1, digits, DigitToChar, CurrChar+c, res);
         }
-	}
+    }
 }
